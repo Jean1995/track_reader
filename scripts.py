@@ -75,7 +75,14 @@ def C8_zx_plots(PATH, title=""):
         t_list.append(t) # assume identical
         t_list.append(t)
 
-        
+    
+    fig = plt.figure()
+    ax = fig.add_subplot(111)        
+    ax.scatter(z_list, x_list, c=cmap(t_list), s=1)
+    ax.set_xlabel('z / m')
+    ax.set_ylabel('x / m')
+    ax.set_title(title)
+
 def C8_zy_plots(PATH, title=""):
     tracks = pd.read_parquet(PATH)
     print(f"Max energy (kinetic): {max(tracks['start_energy'])} GeV, Min energy (kinetic): {min(tracks['end_energy'])} GeV")
@@ -118,6 +125,13 @@ def C8_zy_plots(PATH, title=""):
         z_list.append(z2-6371000)
         t_list.append(t) # assume identical
         t_list.append(t)
+
+    fig = plt.figure()
+    ax = fig.add_subplot(111)        
+    ax.scatter(z_list, y_list, c=cmap(t_list), s=1)
+    ax.set_xlabel('z / m')
+    ax.set_ylabel('y / m')
+    ax.set_title(title)
 
 def C8_xy_plots(PATH, title=""):
     tracks = pd.read_parquet(PATH)
@@ -162,7 +176,12 @@ def C8_xy_plots(PATH, title=""):
         t_list.append(t) # assume identical
         t_list.append(t)
 
-        
+    fig = plt.figure()
+    ax = fig.add_subplot(111)        
+    ax.scatter(x_list, y_list, c=cmap(t_list), s=1)
+    ax.set_xlabel('x / m')
+    ax.set_ylabel('y / m')
+    ax.set_title(title) 
         
 def C8_tz_plots(PATH, title=""):
     tracks = pd.read_parquet(PATH)
@@ -196,6 +215,7 @@ def C8_tz_plots(PATH, title=""):
     plt.xlabel('t (normalized)')
     plt.ylabel('z / km')
     plt.title(title)
+    plt.plot(t_list, z_list)
             
     
 ### CORSIKA 7
