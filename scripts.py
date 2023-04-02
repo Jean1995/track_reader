@@ -197,14 +197,15 @@ def C8_tz_plots(PATH, title=""):
     cmap = plt.cm.get_cmap('hot')
     
     current_shower = 0
-    fig = plt.figure()
+    #fig = plt.figure()
     for pdg, x1, x2, y1, y2, z1, z2, t, shower in zip(tracks['pdg'], 
                                            tracks['start_x'], tracks['end_x'],
                                            tracks['start_y'], tracks['end_y'],
                                            tracks['start_z'], tracks['end_z'],
                                              norm_t, tracks['shower']):
         if (current_shower!=shower):
-            plt.plot(t_list, z_list)
+            plt.plot(t_list, z_list, label=title)
+            plt.legend()
             z_list = []
             t_list = []
             current_shower = shower
@@ -213,9 +214,10 @@ def C8_tz_plots(PATH, title=""):
         t_list.append(t) # assume identical
         t_list.append(t)
     plt.xlabel('t (normalized)')
-    plt.ylabel('z / km')
-    plt.title(title)
-    plt.plot(t_list, z_list)
+    plt.ylabel('z / m')
+    plt.plot(t_list, z_list, label=title)
+    plt.legend()
+
             
     
 ### CORSIKA 7
@@ -477,5 +479,5 @@ def C7_tz_plots(PATH, title=""):
         t_list.append(t)
     
     plt.xlabel('t (normalized)')
-    plt.ylabel('z / km')
+    plt.ylabel('z / m')
     plt.title(title)        
